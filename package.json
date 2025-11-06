@@ -1,0 +1,46 @@
+{
+  "name": "tamen-jahan-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend",
+    "gateway",
+    "services/*"
+  ],
+  "scripts": {
+    "build:frontend": "npm --workspace=frontend run build",
+    "build:backend": "npx tsc -p tsconfig.server.json",
+    "build:all": "npm run build:frontend && npm run build:backend",
+    "prestart": "npm run build:all",
+  "start": "npx dotenv -- npm-run-all --parallel start:gateway start:service-users start:service-main start:service-projects start:service-contracts start:service-requests start:service-baseinfo start:frontend start:service-identity start:service-organization start:service-workflow start:service-bankaccount start:service-access start:service-financialresource start:service-workmeasurement start:service-analysis start:service-notification start:service-payroll start:service-report start:service-automation",
+    "start:backend": "node dist/backend/server.js",
+    "start:gateway": "npm --workspace=gateway start",
+    "start:service-users": "npm --workspace=services/users start",
+    "start:service-main": "npm --workspace=services/main start",
+    "start:service-projects": "npm --workspace=services/projects start",
+    "start:service-contracts": "npm --workspace=services/contracts start",
+    "start:service-requests": "npm --workspace=services/requests start",
+    "start:service-baseinfo": "npm --workspace=services/baseinfo start",
+    "start:service-identity": "npm --workspace=services/identity start",
+    "start:service-organization": "npm --workspace=services/organization start",
+    "start:service-workflow": "npm --workspace=services/workflow start",
+    "start:service-bankaccount": "npm --workspace=services/bankAccount start",
+    "start:service-access": "npm --workspace=services/access start",
+    "start:service-financialresource": "npm --workspace=services/financialresource start",
+    "start:service-workmeasurement": "npm --workspace=services/workmeasurement start",
+    "start:service-analysis": "npm --workspace=services/analysis start",
+    "start:service-notification": "npm --workspace=services/notification start",
+    "start:service-payroll": "npm --workspace=services/payroll start",
+    "start:service-report": "npm --workspace=services/report start",
+    "start:service-automation": "npm --workspace=services/automation start",
+    "start:frontend": "npm --workspace=frontend start"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
+    "concurrently": "^8.2.2",
+    "dotenv-cli": "^7.4.2",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3"
+  }
+}
